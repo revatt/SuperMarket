@@ -116,7 +116,7 @@ public class FoodMarketResource {
 	@Path("/addQuantity")
 	@Produces("text/plain")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String addSuperMarket(@FormParam("marketId") String marketId,
+	public String addQuantity(@FormParam("marketId") String marketId,
 			@FormParam("itemId") String itemId,
 			@FormParam("quantity") String quantity) {
 		int quantityInt = 0;
