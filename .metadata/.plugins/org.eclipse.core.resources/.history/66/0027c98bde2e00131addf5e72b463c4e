@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h4>An Unordered List:</h4>
+<ul>
+  <li><a href="rest/foodmarket/supermarkets">All supermarkets REST call</a></li>
+  <li><a href="rest/foodmarket/fooditems">All Food items REST call</a></li>
+  <li><a href="addFoodItem.html">Add food item</a></li>
+</ul>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+package dods.foodmarket.utils;
+
+import dods.foodmarket.FoodItem;
+import dods.foodmarket.model.MemoryMarketManager;
+
+public class MarketUtils {
+	
+	public MemoryMarketManager getDefaultMemoryMarketManager() {
+		 MemoryMarketManager memoryMarketManager = new MemoryMarketManager();
+		 memoryMarketManager.addFoodItem(getFoodItem("", "", ""));
+	}
+
+	private FoodItem getFoodItem(String id, String description, String type) {
+		return null;
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.sky.dvdstore;
+
+public class SimpleDvdService implements DvdService {
+
+}

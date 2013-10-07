@@ -1,0 +1,36 @@
+package com.sky.dvdstore;
+
+public class SimpleDvdService implements DvdService {
+	
+	private final DvdRepository dvdRepository;
+	
+	public SimpleDvdService(DvdRepository dvdRepository) {
+		if(dvdRepository == null) {
+			throw new IllegalArgumentException("Dvd repository cannot be null.");
+		}
+		this.dvdRepository = dvdRepository;
+	}
+
+	public Dvd retrieveDvd(String dvdReference) throws DvdNotFoundException {
+		validateDvdReference(dvdReference);
+		Dvd dvd = this.dvdRepository.retrieveDvd(dvdReference);
+		if(dvd == null) {
+			throw new DvdNotFoundException("Dvd not found in the repository.");
+		}
+		return dvd;
+	}
+
+	private void validateDvdReference(String dvdReference) {
+		if(dvdReference == null || !dvdReference.startsWith(DvdRepository.DVD_REFERENCE_PREFIX)) {
+			throw new IllegalArgumentException("Dvd reference must start with " 
+					+ DvdRepository.DVD_REFERENCE_PREFIX + ", bad dvd reference:" + dvdReference);
+		}
+	}
+
+	public String getDvdSummary(String dvdReference)
+			throws DvdNotFoundException {
+		retrieveDvd(dvdReference);
+		return null;
+	}
+
+}

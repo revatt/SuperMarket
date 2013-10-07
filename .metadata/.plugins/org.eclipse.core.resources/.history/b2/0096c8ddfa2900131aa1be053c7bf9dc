@@ -1,0 +1,23 @@
+package com.sky.dvdstore;
+
+public class SimpleDvdService implements DvdService {
+	
+	private final DvdRepository dvdRepository;
+	
+	public SimpleDvdService(DvdRepository dvdRepository) {
+		if(dvdRepository == null) {
+			throw new IllegalArgumentException("Dvd repository cannot be null.");
+		}
+		this.dvdRepository = dvdRepository;
+	}
+
+	public Dvd retrieveDvd(String dvdReference) throws DvdNotFoundException {
+		return null;
+	}
+
+	public String getDvdSummary(String dvdReference)
+			throws DvdNotFoundException {
+		return null;
+	}
+
+}

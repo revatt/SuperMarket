@@ -1,0 +1,15 @@
+package com.sky.dvdstore;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+
+public class TestSimpleDvdService extends TestDvdService {
+
+	@Override
+	protected DvdService getDvdService() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

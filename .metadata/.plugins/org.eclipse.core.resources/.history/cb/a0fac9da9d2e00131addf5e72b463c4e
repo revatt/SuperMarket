@@ -1,0 +1,34 @@
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+
+public class Test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		List<Integer> lists = new LinkedList<Integer>();
+		lists.add(1);
+		lists.add(5);
+		lists.add(7);
+		lists.add(9);
+		lists.add(2);
+		
+		Iterator<Integer> itrs = lists.iterator();
+		while (itrs.hasNext()) {
+			Integer in = itrs.next();
+			if(in < 6){
+				itrs.remove();
+			}
+		}
+		
+		for(int xx: lists) {
+			System.out.println(xx);
+		}
+		
+		
+	}
+
+}

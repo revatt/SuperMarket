@@ -1,0 +1,13 @@
+/*
+ * Copyright � 2006-2010. BSkyB Ltd All Rights reserved
+ */
+
+package com.sky.dvdstore;
+
+public interface DvdRepository {
+	
+	private static final String DVD_REFERENCE_PREFIX = "DVD-";
+
+	public Dvd retrieveDvd(String reference);
+    
+}

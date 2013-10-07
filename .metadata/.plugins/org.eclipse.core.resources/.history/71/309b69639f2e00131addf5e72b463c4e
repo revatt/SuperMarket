@@ -1,0 +1,7 @@
+package dods.foodmarket;
+
+public class FoodItem {
+	
+	private String id;
+
+}

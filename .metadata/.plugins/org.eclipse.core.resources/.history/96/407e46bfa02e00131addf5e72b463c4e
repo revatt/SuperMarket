@@ -1,0 +1,22 @@
+package dods.foodmarket.model;
+
+import java.util.List;
+
+import dods.foodmarket.FoodItem;
+import dods.foodmarket.SuperMarket;
+
+public interface MarketManager {
+	
+	public List<String> getAllFoodTypes();
+	
+	public List<SuperMarket> getAllMarkets();
+	
+	public int getQuantity(SuperMarket market, FoodItem item);
+	
+	public boolean addOrUpdate(SuperMarket market, FoodItem item, int quantity);
+	
+	public List<FoodItem> getFoodItems(String type);
+	
+	public List<FoodItem> getFoodItemsInSuperMarket(String superMarketId);
+
+}

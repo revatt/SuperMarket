@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TestDefaultMemoryMarketManager" project="SuperMarket" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="dods.foodmarket.main.TestDefaultMemoryMarketManager" time="0.01">
+    <testcase name="testGetAllFoodItems" classname="dods.foodmarket.main.TestDefaultMemoryMarketManager" time="0.0"/>
+    <testcase name="testGetAllSuperMarkets" classname="dods.foodmarket.main.TestDefaultMemoryMarketManager" time="0.0"/>
+    <testcase name="testInStock" classname="dods.foodmarket.main.TestDefaultMemoryMarketManager" time="0.01"/>
+  </testsuite>
+</testrun>

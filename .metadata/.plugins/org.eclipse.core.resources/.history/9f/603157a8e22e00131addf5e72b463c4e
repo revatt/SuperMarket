@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="rest/foodmarket/addsupermarket" method="POST">
+Food Item Id: <input type="text" name="id"><br>
+Description: <input type="text" name="description"><br>
+<input type="submit">
+</form>
+
+<p><b>Note:</b> This HTML Form POSTs to REST service to add an item to the database.</p>
+
+</body>
+</html>

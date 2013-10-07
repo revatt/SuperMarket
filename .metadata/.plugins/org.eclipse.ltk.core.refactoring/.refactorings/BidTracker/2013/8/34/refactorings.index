@@ -1,0 +1,12 @@
+1377192924395	Rename type 'UserBid'
+1377193459538	Rename method 'recordUserBid'
+1377193532162	Rename package 'bid.tracker'
+1377193538807	Rename package 'sys'
+1377193774533	Rename package 'auction.bidtracker'
+1377193854814	Delete element
+1377193861337	Rename type 'TestBidTrac'
+1377194091978	Rename local variable 'userBid'
+1377194113990	Rename field 'itemUserBidsMap'
+1377199890307	Rename local variable 'winningBid'
+1377200250885	Rename local variable 'userOneItems'
+1377202406541	Delete element

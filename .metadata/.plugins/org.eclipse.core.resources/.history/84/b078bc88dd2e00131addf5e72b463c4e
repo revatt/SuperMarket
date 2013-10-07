@@ -1,0 +1,22 @@
+package dods.foodmarket.main;
+
+import java.util.Set;
+
+import dods.foodmarket.FoodItem;
+import dods.foodmarket.model.MemoryMarketManager;
+import dods.foodmarket.utils.MarketUtils;
+
+public class TestMem {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		MemoryMarketManager mm = MarketUtils.getDefaultMemoryMarketManager();
+		Set<FoodItem> items = mm.getFoodItemsInSuperMarket(MarketUtils.MARKET_ASDA);
+		for(FoodItem it: items) {
+			System.out.println(it.getId());
+		}
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.sky.dvdstore;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+
+public class TestSimpleDvdService {
+
+	@Before
+	public void setUp() throws Exception {
+		DvdRepository dvdRepositoryStub = new DvdRepositoryStub();
+	}
+
+}

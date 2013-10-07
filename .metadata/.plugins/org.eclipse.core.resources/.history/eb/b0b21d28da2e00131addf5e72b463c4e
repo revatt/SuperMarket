@@ -1,0 +1,78 @@
+package dods.foodmarket.rest;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import javax.inject.Singleton;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import dods.foodmarket.FoodItem;
+import dods.foodmarket.SuperMarket;
+import dods.foodmarket.model.MarketManager;
+import dods.foodmarket.utils.MarketUtils;
+
+@Singleton
+@Path("/foodmarket")
+public class FoodMarketResource {
+	
+	private MarketManager marketManager;
+	
+	public FoodMarketResource() {
+		marketManager = MarketUtils.getDefaultMemoryMarketManager();
+	}
+	
+	@GET
+	@Path("/supermarkets")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<SuperMarket> getAllSuperMarkets() {
+		Set<SuperMarket> marks = marketManager.getAllMarkets();
+		LinkedList<SuperMarket> list = new LinkedList<SuperMarket>();
+		for(SuperMarket market: marks) {
+			list.add(market);
+		}
+        return list;
+    }
+	
+	@GET
+	@Path("/fooditems")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<FoodItem> getAllFoodItems() {
+		Set<FoodItem> items = marketManager.getAllFoodItems();
+		LinkedList<FoodItem> list = new LinkedList<FoodItem>();
+		for(FoodItem item: items) {
+			list.add(item);
+		}
+        return list;
+    }
+	
+	@GET
+	@Path("/fooditems/{supermarket}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<FoodItem> getAllFoodItems(@PathParam("supermarket") String superMarketId) {
+		Set<FoodItem> items = marketManager.getFoodItemsInSuperMarket(superMarketId);
+		LinkedList<FoodItem> list = new LinkedList<FoodItem>();
+		for(FoodItem item: items) {
+			list.add(item);
+		}
+        return list;
+    }
+	
+	@GET
+	@Path("/fooditems/{supermarket}/{fooditem}")
+	@Produces("text/plain")
+    public String getIsAvailable(
+    		@PathParam("supermarket") String superMarketId, 
+    		@PathParam("fooditem") String foodItemId) {
+		int quantity = marketManager.getQuantity(superMarketId, foodItemId);
+		if(quantity > 0) {
+			return "available";
+		}
+        return "not available";
+    }
+
+}

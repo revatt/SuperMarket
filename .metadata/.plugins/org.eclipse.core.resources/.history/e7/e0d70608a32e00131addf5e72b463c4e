@@ -1,0 +1,5 @@
+package dods.foodmarket.model;
+
+public class MemoryMarketManager implements MarketManager {
+
+}

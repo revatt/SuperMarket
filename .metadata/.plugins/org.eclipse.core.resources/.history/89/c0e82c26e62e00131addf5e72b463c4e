@@ -1,0 +1,53 @@
+package dods.foodmarket.main;
+
+import static org.junit.Assert.*;
+
+import java.util.Set;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import dods.foodmarket.FoodItem;
+import dods.foodmarket.model.MarketManager;
+import dods.foodmarket.utils.MarketUtils;
+
+public class TestMemoryMarket {
+
+	private MarketManager marketManager;
+	
+	@Before
+	public void setup() {
+		this.marketManager = MarketUtils.getDefaultMemoryMarketManager();
+	}
+	
+	@Test
+	public void testGetAllFoodItems() throws Exception {
+		Set<FoodItem> foodItems = this.marketManager.getAllFoodItems();
+		assertContains(MarketUtils.FOOD_ID_APPLE, foodItems);
+		assertContains(MarketUtils.FOOD_ID_ORANGE, foodItems);
+		assertContains(MarketUtils.FOOD_ID_CHICKEN, foodItems);
+		
+		assertNotContains("BAD_ID", foodItems);
+	}
+
+	private void assertNotContains(String itemId, Set<FoodItem> foodItems) {
+		for(FoodItem foodItem: foodItems) {
+			if(foodItem.getId().equals(itemId)) {
+				fail("Unknown Item id: " + itemId + " found in default market manager.");
+			}
+		}
+	}
+
+	private void assertContains(String itemId, Set<FoodItem> foodItems) {
+		for(FoodItem foodItem: foodItems) {
+			if(foodItem.getId().equals(itemId)) {
+				return ;
+			}
+		}
+		fail("Item id: " + itemId + " not present in default market manager.");
+	}
+	
+	
+	
+
+}

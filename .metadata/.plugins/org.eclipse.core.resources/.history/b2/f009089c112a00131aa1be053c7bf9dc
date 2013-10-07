@@ -1,0 +1,67 @@
+package com.sky.dvdstore;
+
+public class SimpleDvdService implements DvdService {
+	
+	private final DvdRepository dvdRepository;
+	
+	public SimpleDvdService(DvdRepository dvdRepository) {
+		if(dvdRepository == null) {
+			throw new IllegalArgumentException("Dvd repository cannot be null.");
+		}
+		this.dvdRepository = dvdRepository;
+	}
+
+	public Dvd retrieveDvd(String dvdReference) throws DvdNotFoundException {
+		if(dvdReference == null || !dvdReference.startsWith(DvdRepository.DVD_REFERENCE_PREFIX)) {
+			throw new IllegalArgumentException("Dvd reference must start with " 
+					+ DvdRepository.DVD_REFERENCE_PREFIX + ", bad dvd reference:" + dvdReference);
+		}
+		Dvd dvd = this.dvdRepository.retrieveDvd(dvdReference);
+		if(dvd == null) {
+			throw new DvdNotFoundException("Dvd not found in the repository.");
+		}
+		return dvd;
+	}
+
+	public String getDvdSummary(String dvdReference)
+			throws DvdNotFoundException {
+		Dvd dvd = retrieveDvd(dvdReference);
+		
+		return "[" + dvd.getReference() + "] " + dvd.getTitle() + " - " + getMiniReview(dvd.getReview());
+	}
+
+	/**
+	 * gets mini review with only first ten words of the review followed by ...
+	 * 
+	 * @param review
+	 * @return
+	 */
+	private String getMiniReview(String review) {
+		StringBuilder miniReviewBuilder = new StringBuilder();
+		int wordCount = 0;
+		char previousChar = ' ';
+		for (int i = 0; i < review.length(); i++) {
+			char currentChar = review.charAt(i);
+			// ignore word delimiters and increment word count 
+			// when you encounter a delimiter after word.
+			if(isWordDelim(currentChar) && !isWordDelim(previousChar)) {
+				wordCount++;
+				if(wordCount == 10) {
+					miniReviewBuilder.append("...");
+					break ;
+				}
+			}
+			miniReviewBuilder.append(currentChar);
+			previousChar = currentChar;
+		}
+		return miniReviewBuilder.toString();
+	}
+
+	private boolean isWordDelim(char c) {
+		if(c == ' ' || c == ',') {
+			return true;
+		}
+		return false;
+	}
+
+}

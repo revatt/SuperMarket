@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;INVALID_NUM&apos; in &apos;Solution&apos; to &apos;BIG_NUM&apos;&#x0A;- Original project: &apos;BidTracker&apos;&#x0A;- Original element: &apos;Solution.INVALID_NUM&apos;&#x0A;- Renamed element: &apos;Solution.BIG_NUM&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;INVALID_NUM&apos;" flags="589830" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;{Solution.java[Solution^INVALID_NUM" name="BIG_NUM" references="true" setter="false" stamp="1379754023170" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,45 @@
+package dods.foodmarket.servlet;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import javax.inject.Singleton;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import dods.foodmarket.SuperMarket;
+import dods.foodmarket.model.MarketManager;
+import dods.foodmarket.utils.MarketUtils;
+
+@Singleton
+@Path("/foodmarket")
+public class FoodMarketResource {
+	
+	private MarketManager marketManager;
+	
+	public FoodMarketResource() {
+		System.out.println("HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOO");
+		marketManager = MarketUtils.getDefaultMemoryMarketManager();
+	}
+
+	@GET
+    @Produces({MediaType.TEXT_PLAIN})
+    public String getTest() {
+        return "Helloworld";
+    }
+	
+	@GET @Path("markets")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<SuperMarket> getAllSuperMarkets() {
+		Set<SuperMarket> marks = marketManager.getAllMarkets();
+		LinkedList<SuperMarket> list = new LinkedList<SuperMarket>();
+		for(SuperMarket market: marks) {
+			list.add(market);
+		}
+        return list;
+    }
+
+}

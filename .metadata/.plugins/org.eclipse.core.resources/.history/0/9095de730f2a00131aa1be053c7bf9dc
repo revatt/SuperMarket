@@ -1,0 +1,239 @@
+package com.sky.dvdstore;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestDvdService {
+
+	private DvdService dvdService;
+	
+	@Before
+	public void setUp() throws Exception {
+		DvdRepository dvdRepositoryStub = new DvdRepositoryStub();
+		dvdService = getDvdService(dvdRepositoryStub);
+	}
+
+	protected DvdService getDvdService(DvdRepository dvdRepositoryStub) {
+		SimpleDvdService simpleDvdService = new SimpleDvdService(dvdRepositoryStub);
+		return simpleDvdService;
+	}
+	
+	@Test
+	public void testRetrieveInvalidDvd() throws Exception {
+		// test retrieving invalid dvd reference.
+		try {
+			dvdService.retrieveDvd("INVALID-TEXT");
+			fail("INVALID-TEXT does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+	}
+	
+	@Test
+	public void testRetrieveNullDvd() throws Exception {
+		Dvd dvd;
+		// test retrieving with null dvd reference.
+		try {
+			dvd = dvdService.retrieveDvd(null);
+			fail("null does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+	}
+	
+	@Test
+	public void testRetrieveUnknownDvd() throws Exception {
+		Dvd dvd;
+		// test retrieving an unknown dvd reference.
+		try {
+			dvd = dvdService.retrieveDvd("DVD-999");
+			fail("DVD-999 is not present in repository and hence it should throw DvdNotFoundException");
+		} catch (DvdNotFoundException dex) {
+			// should throw DvdNotFoundException
+		} catch (Exception ex) {
+			fail("DVD-999 is valid dvd reference!");
+		}
+	}
+	
+	@Test
+	public void testRetrieveTopGunDvd() throws Exception {
+		Dvd dvd;
+		// test retrieving top gun dvd.
+		try {
+			dvd = dvdService.retrieveDvd(DvdRepositoryStub.DVD_TOPGUN_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected Top gun dvd!", DvdRepositoryStub.DVD_TOPGUN_REFERENCE, dvd.getReference());
+		} catch (Exception ex) {
+			fail(DvdRepositoryStub.DVD_TOPGUN_REFERENCE + " is valid dvd reference and is present in our repository " +
+						 " but the code throwed exception!");
+		}
+	}
+	
+	@Test
+	public void testRetrieveDvd() throws Exception {
+		Dvd dvd;
+		// test retrieving invalid dvd reference.
+		try {
+			dvd = dvdService.retrieveDvd("INVALID-TEXT");
+			fail("INVALID-TEXT does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+		
+		// test retrieving with null dvd reference.
+		try {
+			dvd = dvdService.retrieveDvd(null);
+			fail("null does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+		
+		// test retrieving an unknown dvd reference.
+		try {
+			dvd = dvdService.retrieveDvd("DVD-999");
+			fail("DVD-999 is not present in repository and hence it should throw DvdNotFoundException");
+		} catch (DvdNotFoundException dex) {
+			// should throw DvdNotFoundException
+		} catch (Exception ex) {
+			fail("DVD-999 is valid dvd reference!");
+		}
+		
+		// test retrieving top gun dvd.
+		try {
+			dvd = dvdService.retrieveDvd(DvdRepositoryStub.DVD_TOPGUN_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected Top gun dvd!", DvdRepositoryStub.DVD_TOPGUN_REFERENCE, dvd.getReference());
+		} catch (Exception ex) {
+			fail(DvdRepositoryStub.DVD_TOPGUN_REFERENCE + " is valid dvd reference and is present in our repository " +
+						 " but the code throwed exception!");
+		}
+		
+	}
+	
+	@Test
+	public void testGetInvalidDvdSummary() throws Exception {
+		String dvdSummary;
+		// test getting summary with invalid dvd reference.
+		try {
+			dvdSummary = dvdService.getDvdSummary("INVALID-TEXT");
+			fail("INVALID-TEXT does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+	}
+	
+	@Test
+	public void testGetNullDvdSummary() throws Exception {
+		// test getting summary with null dvd reference.
+		try {
+			dvdService.getDvdSummary(null);
+			fail("null does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+	}
+	
+	@Test
+	public void testGetUnknownDvdSummary() throws Exception {
+		String dvdSummary;
+		// test getting summary for an unknown dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary("DVD-999");
+			fail("DVD-999 is not present in repository and hence it should throw DvdNotFoundException");
+		} catch (DvdNotFoundException dex) {
+			// should throw DvdNotFoundException
+		} catch (Exception ex) {
+			fail("DVD-999 is valid dvd reference!");
+		}
+	}
+	
+	@Test
+	public void testGetTopGunDvdSummary() throws Exception {
+		String dvdSummary;
+		// test getting summary top gun dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary(DvdRepositoryStub.DVD_TOPGUN_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected Top gun dvd!", 
+					"[DVD-TG423] Topgun - All action film", dvdSummary);
+		} catch (Exception ex) {
+			fail("Exception while getting summary for top gun dvd!: " + ex.getMessage());
+		}
+	}
+	
+	@Test
+	public void testGetShrekDvdSummary() throws Exception {
+		String dvdSummary;
+		// test getting summary shrek dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary(DvdRepositoryStub.DVD_SHREK_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected Shrek dvd!", 
+					"[DVD-S765] Shrek - Big green monsters, they're just all the rage these days...", dvdSummary);
+		} catch (Exception ex) {
+			fail("Exception while getting summary for Shrek dvd!: " + ex.getMessage());
+		}
+	}
+	
+	@Test
+	public void testGetMyDvdSummary() throws Exception {
+		String dvdSummary;
+		// test getting my dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary(DvdRepositoryStub.DVD_MYDVD_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected My dvd!", 
+					"[DVD-1234] My Dvd - one    two,  three four five six seven eight nine ten...", dvdSummary);
+		} catch (Exception ex) {
+			fail("Exception while getting summary for My dvd!: " + ex.getMessage());
+		}
+	}
+	
+	@Test
+	public void testGetDvdSummary() throws Exception {
+		String dvdSummary;
+		// test getting summary with invalid dvd reference.
+		try {
+			dvdSummary = dvdService.getDvdSummary("INVALID-TEXT");
+			fail("INVALID-TEXT does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+		
+		// test getting summary with null dvd reference.
+		try {
+			dvdSummary = dvdService.getDvdSummary(null);
+			fail("null does not start with DVD- and hence should throw exception.");
+		} catch (Exception ile) {
+		}
+		
+		// test getting summary for an unknown dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary("DVD-999");
+			fail("DVD-999 is not present in repository and hence it should throw DvdNotFoundException");
+		} catch (DvdNotFoundException dex) {
+			// should throw DvdNotFoundException
+		} catch (Exception ex) {
+			fail("DVD-999 is valid dvd reference!");
+		}
+		
+		// test getting summary top gun dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary(DvdRepositoryStub.DVD_TOPGUN_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected Top gun dvd!", 
+					"[DVD-TG423] Topgun - All action film", dvdSummary);
+		} catch (Exception ex) {
+			fail("Exception while getting summary for top gun dvd!: " + ex.getMessage());
+		}
+		
+		// test getting summary shrek dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary(DvdRepositoryStub.DVD_SHREK_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected Shrek dvd!", 
+					"[DVD-S765] Shrek - Big green monsters, they're just all the rage these days...", dvdSummary);
+		} catch (Exception ex) {
+			fail("Exception while getting summary for Shrek dvd!: " + ex.getMessage());
+		}
+		
+		// test getting my dvd.
+		try {
+			dvdSummary = dvdService.getDvdSummary(DvdRepositoryStub.DVD_MYDVD_REFERENCE);
+			assertEquals("Retrieved Dvd is not the expected My dvd!", 
+					"[DVD-1234] My Dvd - one    two,  three four five six seven eight nine ten...", dvdSummary);
+		} catch (Exception ex) {
+			fail("Exception while getting summary for My dvd!: " + ex.getMessage());
+		}
+		
+	}
+
+}

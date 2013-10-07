@@ -1,0 +1,17 @@
+1381074127183	Delete element
+1381074890684	Encapsulate field 'id'
+1381074896637	Encapsulate field 'description'
+1381074950560	Rename type 'SuperMarketItems'
+1381083789159	Rename local variable 'market'
+1381083799650	Rename local variable 'item'
+1381087343809	Delete element
+1381089444413	Delete element
+1381092052735	Move compilation unit
+1381093656819	Delete element
+1381093966777	Delete element
+1381096465226	Move compilation unit
+1381098127521	Delete element
+1381101939385	Copy file
+1381102384499	Rename resource 'addSuperMarket.html'
+1381102393760	Rename resource 'addFoodItem.html'
+1381102400148	Rename resource 'addFoodItem1.html'

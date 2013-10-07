@@ -1,0 +1,20 @@
+package com.sky.dvdstore;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+
+public class TestSimpleDvdService extends TestDvdService {
+
+	@Before
+	public void setUp() throws Exception {
+		
+	}
+
+	@Override
+	protected DvdService getDvdService(DvdRepository dvdRepositoryStub) {
+		SimpleDvdService simpleDvdService = new SimpleDvdService(dvdRepositoryStub);
+		return simpleDvdService;
+	}
+
+}

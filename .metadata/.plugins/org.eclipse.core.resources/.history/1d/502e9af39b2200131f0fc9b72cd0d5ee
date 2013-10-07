@@ -1,0 +1,60 @@
+
+public class Solution {
+	int INVALID_NUM = 2000000999;
+	
+	int[][] visited;
+	int tryNum = 0;
+	
+	public int solution(int[][] A) {
+		visited = A;
+		return 0;
+    }
+	
+	private void tryPosition(int r, int c) {
+		reset();
+		push(r, c);
+		tryNum = visited[r][c];
+		visited[r][c] = INVALID_NUM;
+		while(hasElements()) {
+			int[] rc = pop();
+			pushIfOk(rc[0]-1, rc[1]);
+			pushIfOk(rc[0], rc[1]-1);
+			pushIfOk(rc[0]+1, rc[1]);
+			pushIfOk(rc[0], rc[1]+1);
+		}
+	}
+
+	private void pushIfOk(int i, int j) {
+		
+	}
+
+	private int[] pop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private boolean hasElements() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private void push(int r, int c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void reset() {
+		
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int[][] A = new int[][]{{5, 4, 4}, {4, 3, 4}, {3, 2, 4}, {2, 2, 2}, {3, 3, 4}, {1, 4, 4}, {4, 1, 1}};
+		System.out.println(A.length);
+		System.out.println(A[0].length);
+		//new Solution().solution(A);
+	}
+
+}

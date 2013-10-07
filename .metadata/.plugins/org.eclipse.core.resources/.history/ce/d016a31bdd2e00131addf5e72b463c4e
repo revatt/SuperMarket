@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<a href="rest/foodmarket/supermarkets">All supermarkets REST call</a>
+<a href="rest/foodmarket/fooditems">All Food items REST call</a>
+
+</body>
+</html>

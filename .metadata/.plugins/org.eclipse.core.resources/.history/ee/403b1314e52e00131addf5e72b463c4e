@@ -1,0 +1,20 @@
+package dods.foodmarket.main;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+
+import dods.foodmarket.model.MarketManager;
+import dods.foodmarket.utils.MarketUtils;
+
+public class TestMemoryMarket {
+
+	private MarketManager marketManager;
+	
+	@Before
+	public void setup() {
+		this.marketManager = MarketUtils.getDefaultMemoryMarketManager();
+	}
+	
+
+}

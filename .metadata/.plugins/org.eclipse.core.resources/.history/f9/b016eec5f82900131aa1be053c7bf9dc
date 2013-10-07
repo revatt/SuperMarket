@@ -1,0 +1,15 @@
+package com.sky.dvdstore;
+
+public class SimpleDvdService implements DvdService {
+
+	public Dvd retrieveDvd(String dvdReference) throws DvdNotFoundException {
+		return null;
+	}
+
+	public String getDvdSummary(String dvdReference)
+			throws DvdNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

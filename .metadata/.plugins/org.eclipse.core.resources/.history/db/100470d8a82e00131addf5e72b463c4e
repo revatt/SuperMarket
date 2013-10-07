@@ -1,0 +1,88 @@
+package dods.foodmarket.model;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+import dods.foodmarket.FoodItem;
+import dods.foodmarket.SuperMarket;
+import dods.foodmarket.SuperMarketItem;
+
+public class MemoryMarketManager implements MarketManager {
+	
+	private ConcurrentHashMap<String, FoodItem> foodItems = new ConcurrentHashMap<String, FoodItem>();
+	
+	private ConcurrentHashMap<String, SuperMarket> markets = new ConcurrentHashMap<String, SuperMarket>();
+	
+	private ConcurrentHashMap<String, SuperMarketItem> marketItems = new ConcurrentHashMap<String, SuperMarketItem>();
+
+	public Set<String> getAllFoodTypes() {
+		HashSet<String> allFoodTypes = new HashSet<String>();
+		for(FoodItem item: foodItems.values()) {
+			allFoodTypes.add(item.getType());
+		}
+		return allFoodTypes;
+	}
+	
+	public Set<SuperMarket> getAllMarkets() {
+		HashSet<SuperMarket> allSuperMarkets = new HashSet<SuperMarket>();
+		for(SuperMarket market: markets.values()) {
+			allSuperMarkets.add(market);
+		}
+		return allSuperMarkets;
+	}
+
+	private String getMarketItemKey(SuperMarket market, FoodItem item) {
+		return market.getId() + "^" + item.getId();
+	}
+	
+	public int getQuantity(SuperMarket market, FoodItem item) {
+		if(market == null || item == null) {
+			return -2;
+		}
+		String marketItemKey = getMarketItemKey(market, item);
+		SuperMarketItem marketItem = this.marketItems.get(marketItemKey);
+		if(marketItem == null) {
+			return -1;
+		}
+		return marketItem.getQuantity();
+	}
+
+	
+	public boolean addOrUpdate(SuperMarket market, FoodItem item, int quantity) {
+		if(market == null || item == null) {
+			return false;
+		}
+		if(!markets.contains(market.getId()) 
+				|| !foodItems.contains(item.getId())) {
+			return false;
+		}
+		String marketItemKey = getMarketItemKey(market, item);
+		SuperMarketItem marketItem = new SuperMarketItem();
+		marketItem.setItemId(item.getId());
+		marketItem.setSuperMarketId(market.getId());
+		marketItem.setQuantity(quantity);
+		this.marketItems.put(marketItemKey, marketItem);
+		return true;
+	}
+
+	
+	public Set<FoodItem> getFoodItems(String type) {
+		HashSet<FoodItem> items = new HashSet<FoodItem>();
+		for(FoodItem item: foodItems.values()) {
+			if(item.getType().equals(type)) {
+				items.add(item);
+			}
+		}
+		return items;
+	}
+
+	
+	public List<FoodItem> getFoodItemsInSuperMarket(String superMarketId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

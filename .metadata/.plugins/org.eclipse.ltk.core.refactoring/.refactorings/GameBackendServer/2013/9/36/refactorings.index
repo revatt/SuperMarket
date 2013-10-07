@@ -1,0 +1,26 @@
+1378237021446	Delete element
+1378237045341	Delete element
+1378245117126	Rename type 'SessionManager'
+1378245180948	Rename type 'MemorySessionManager'
+1378328084171	Rename type 'GameScoreManager'
+1378328143441	Rename local variable 'sessionId'
+1378421957051	Encapsulate field 'user'
+1378421961272	Encapsulate field 'score'
+1378575218735	Rename method 'addThisRemovePreviousScore'
+1378575496793	Rename method 'replaceScore'
+1378582675893	Rename field 'updateScoreMutex'
+1378582708150	Rename field 'duplicateUserMutex'
+1378647734906	Rename method 'writeResponse'
+1378653042593	Rename method 'getUniqueRandomSessionId'
+1378658120744	Rename local variable 'readPost'
+1378658556501	Rename type 'InvalidInput'
+1378659144595	Rename package 'game.system.work'
+1378659167426	Rename package 'game.system.memwork'
+1378659195170	Rename type 'TestGameHttpServer'
+1378660957612	Delete element
+1378660992730	Move compilation units
+1378662011233	Rename type 'GameTest'
+1378668186924	Rename local variable 'cnt'
+1378681251789	Delete element
+1378682419011	Delete element
+1378682804050	Delete element

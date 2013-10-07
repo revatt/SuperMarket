@@ -1,0 +1,58 @@
+package dods.foodmarket.model;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+import dods.foodmarket.FoodItem;
+import dods.foodmarket.SuperMarket;
+import dods.foodmarket.SuperMarketItem;
+
+public class MemoryMarketManager implements MarketManager {
+	
+	private ConcurrentHashMap<String, FoodItem> foodItems = new ConcurrentHashMap<String, FoodItem>();
+	
+	private ConcurrentHashMap<String, SuperMarket> markets = new ConcurrentHashMap<String, SuperMarket>();
+	
+	private ConcurrentHashMap<String, SuperMarketItem> marketItems = new ConcurrentHashMap<String, SuperMarketItem>();
+
+	public Set<String> getAllFoodTypes() {
+		HashSet<String> allFoodTypes = new HashSet<String>();
+		for(FoodItem item: foodItems.values()) {
+			allFoodTypes.add(item.getType());
+		}
+		return allFoodTypes;
+	}
+	
+	public List<SuperMarket> getAllMarkets() {
+		return null;
+	}
+
+	
+	public int getQuantity(SuperMarket market, FoodItem item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	public boolean addOrUpdate(SuperMarket market, FoodItem item, int quantity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+	public List<FoodItem> getFoodItems(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	public List<FoodItem> getFoodItemsInSuperMarket(String superMarketId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

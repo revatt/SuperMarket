@@ -1,0 +1,8 @@
+package dods.foodmarket.main;
+
+import static org.junit.Assert.*;
+
+public class TestMemoryMarket {
+
+
+}
